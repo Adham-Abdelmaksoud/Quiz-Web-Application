@@ -14,7 +14,16 @@ const Questions = () => {
     let { id } = useParams();
     id = Number(id);
 
-    let handleSubmitAnswer = () => {
+    let num2str = (num) => {
+        if(num < 10){
+            return `0${num}`;
+        }
+        else{
+            return `${num}`;
+        }
+    }
+
+    let addChoiceToAnswers = () => {
         let answers = [];
         if(getCookieByName('answers') === ''){
             answers = [choice];
@@ -24,21 +33,19 @@ const Questions = () => {
             answers.push(choice);
         }
         setCookie('answers', answers);
+        setChoice('');
+        console.log(answers);
+    }
+
+    let handleSubmitAnswer = () => {   
+        addChoiceToAnswers();
         
         if(id < questions.length){
             navigate(`/questions/${id+1}`);
+            setStarted(false);
         }
         else{
             navigate('/review');
-        }
-    }
-
-    let num2str = (num) => {
-        if(num < 10){
-            return `0${num}`;
-        }
-        else{
-            return `${num}`;
         }
     }
 
@@ -81,9 +88,10 @@ const Questions = () => {
             }
         }
         else{
-            setTimeout(() => {
+            let timeout_id = setTimeout(() => {
                 if(seconds === 0){
                     if(minutes === 0){
+                        addChoiceToAnswers();
                         navigate(`/questions/${id+1}`);
                         setStarted(false);
                     }
@@ -96,6 +104,8 @@ const Questions = () => {
                     setSeconds(seconds-1);
                 }
             }, 1000);
+
+            return () => clearTimeout(timeout_id);
         }
     }, [started, minutes, seconds]);
 
