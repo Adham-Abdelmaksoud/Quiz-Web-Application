@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.title{
+    font-size: 80px;
+    text-align: center;
+}
+.subtitle{
+    font-size: 45px;
+    text-align: center;
+}
+
+.button{
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 3px 3px #333333;
+    font-size: 30px;
+    font-weight: bold;
+    width: fit-content;
+    padding: 2px 17px;
+}
+.button:active{
+    box-shadow: none;
+    transform: translate(3px);
+}
+
+.dropdown{
+    font-size: 22px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.question{
+    font-size: 3vw;
+    text-align: center;
+}
+
+.textbox{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.table{
+    overflow-x: auto;
+    width: 92%;
+    margin: 0 4%;
+}
+
+.table :is(th,td){
+    border: 1.6px solid black;
+    text-align: center;
+}
+
+.table th{
+    font-size: x-large;
+    padding: 10px 0;
+}
+.table td{
+    font-size: large;
+}
+
+.react-icons{
+    transform: translate(10px, 5px);
+}
